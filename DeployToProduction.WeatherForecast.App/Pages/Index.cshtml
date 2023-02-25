@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container-fluid">
+    <h1 class="display-4 text-center">Узнай погоду в своем городе</h1>
+
+    <form method="get">
+        <div class="row">
+            <div class="col-10">
+                <input type="text"
+                       class="form-control mb-2"
+                       id="location"
+                       placeholder="Город"
+                       name="location">
+            </div>
+            <div class="col-2">
+                <button id="submit_btn" type="submit" class="btn btn-primary mb-2">Узнать</button>
+            </div>
+        </div>
+
+    </form>
+
+    @if (Model.Weather != null)
+    {
+        <p id="forecast_block">
+            <span>
+                @Model.Weather.Location:
+            </span>
+            <span>
+                @Model.Weather.Temperature.Celsius()
+            </span>
+            <span>
+                @Model.Weather.Kind.Description
+            </span>
+        </p>
+    }
+
+</div>
