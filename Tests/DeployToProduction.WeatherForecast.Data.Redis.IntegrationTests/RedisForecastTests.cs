@@ -1,5 +1,3 @@
-using DotNet.Testcontainers.Builders;
-
 namespace DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests
 {
     [TestClass]

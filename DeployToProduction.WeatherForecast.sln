@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployToProduction.WeatherF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE5DC05D-520E-4422-BF50-08127815D2EA}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		Dockerfile = Dockerfile
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -24,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployToProduction.WeatherF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployToProduction.WeatherForecast.Data.Redis", "DeployToProduction.WeatherForecast.Data.Redis\DeployToProduction.WeatherForecast.Data.Redis.csproj", "{3BF21857-FEF2-4B96-A51F-E4CF9842B1A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests", "Tests\DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests\DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests.csproj", "{6A1A8ABF-8631-460F-BEB1-2FD4C77551EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests", "Tests\DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests\DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests.csproj", "{6A1A8ABF-8631-460F-BEB1-2FD4C77551EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

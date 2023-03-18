@@ -9,10 +9,18 @@ namespace DeployToProduction.WeatherForecast.App.UITests
         [TestMethod]
         public async Task Generate_RandomWeather()
         {
+            var container = new ContainerBuilder()
+                .WithImage("weather-forecast-app-img")
+                .WithNetwork("weather-forecast-net")
+                .WithPortBinding(5055, 80)
+                .Build();
+
+            await container.StartAsync().ConfigureAwait(false);
+            
             var driver = new EdgeDriver();
             try
             {
-                driver.Navigate().GoToUrl("http://localhost:5225/");
+                driver.Navigate().GoToUrl("http://localhost:5055/");
 
                 driver.FindElement(By.Id("location")).SendKeys("Moscow");
                 driver.FindElement(By.Id("submit_btn")).Click();
@@ -25,6 +33,7 @@ namespace DeployToProduction.WeatherForecast.App.UITests
             {
                 driver.Quit();
                 driver.Dispose();
+                await container.DisposeAsync().ConfigureAwait(false);
             }
         }
     }
