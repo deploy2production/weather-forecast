@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  setup:
+    container_name: "weather-forecast-setup"
+    image: "weather-forecast-setup-img"
+    build:
+      context: .
+      dockerfile: Dockerfile.setup
+    networks:
+      - weather-forecast-net
+    environment:
+       ConnectionStrings__Postgres: Host=weather-forecast-postgres;User Id=postgres;Password=postgres;Database=postgres
+    depends_on:
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started
+  app:
+    container_name: "weather-forecast-app"
+    image: "weather-forecast-app-img"
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    networks:
+      - weather-forecast-net
+    ports:
+      - "5022:80"
+    environment:
+       ASPNETCORE_ENVIRONMENT: Production
+       DOTNET_PRINT_TELEMETRY_MESSAGE: false
+       ConnectionStrings__Postgres: Host=weather-forecast-postgres;User Id=webapp;Password=webapppwd;Database=postgres
+       ConnectionStrings__Redis: weather-forecast-redis:6379
+    depends_on:
+      setup:
+        condition: service_completed_successfully

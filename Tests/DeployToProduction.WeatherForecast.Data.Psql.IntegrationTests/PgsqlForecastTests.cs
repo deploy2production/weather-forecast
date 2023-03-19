@@ -28,7 +28,10 @@
             {
                 new Db(container.ConnectionString).Setup();
 
-                var forecast = new PgsqlForecast(container.ConnectionString);
+                var connectionString = container.ConnectionString
+                    .Replace("User Id=postgres", "User Id=webapp")
+                    .Replace("Password=postgres", "Password=webapppwd");
+                var forecast = new PgsqlForecast(connectionString);
 
                 var weather1 = await forecast.PredictAsync("Moscow");
                 var weather2 = await forecast.PredictAsync("Moscow");

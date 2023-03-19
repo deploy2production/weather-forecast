@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  setup:
+    container_name: "weather-forecast-setup"
+    image: "weather-forecast-setup-img"
+    build:
+      context: .
+      dockerfile: Dockerfile.setup
+    networks:
+      - weather-forecast-net
+    environment:
+       ConnectionStrings__Postgres: Host=weather-forecast-postgres;User Id=postgres;Password=postgres;Database=postgres
+    depends_on:
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started

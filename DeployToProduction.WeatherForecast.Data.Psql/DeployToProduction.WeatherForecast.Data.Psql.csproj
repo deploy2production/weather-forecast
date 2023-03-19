@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <None Remove="Sql\Sql001 - Create weather table.sql" />
+    <None Remove="Sql\Sql002 - Create webapp user.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Sql\Sql001 - Create weather table.sql" />
+    <EmbeddedResource Include="Sql\Sql002 - Create webapp user.sql" />
   </ItemGroup>
 
   <ItemGroup>
