@@ -38,4 +38,11 @@
         </p>
     }
 
+    @if (Model.AdPost != null)
+    {
+        <p id="ads_block">
+            <a href="@Model.AdPost.Href" target="_blank">@Model.AdPost.Content</a>
+        </p>
+    }
+
 </div>

@@ -1,0 +1,24 @@
+POST http://localhost:5298/ads
+Content-Type: application/json
+
+{
+    "Location": "Moscow"
+}
+
+###
+
+POST http://localhost:5298/ads
+Content-Type: application/json
+
+{
+    "Location": "Москва"
+}
+
+###
+
+POST http://localhost:5298/ads
+Content-Type: application/json
+
+{
+    "Location": "London"
+}

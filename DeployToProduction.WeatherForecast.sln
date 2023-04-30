@@ -18,9 +18,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE5DC05D-520E-4422-BF50-08127815D2EA}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
+		docker-compose.app.dev.yml = docker-compose.app.dev.yml
 		docker-compose.app.prd.yml = docker-compose.app.prd.yml
 		docker-compose.db.yml = docker-compose.db.yml
-		docker-compose.app.dev.yml = docker-compose.app.dev.yml
 		docker-compose.setup.yml = docker-compose.setup.yml
 		Dockerfile.app = Dockerfile.app
 		Dockerfile.setup = Dockerfile.setup
@@ -34,6 +34,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests", "Tests\DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests\DeployToProduction.WeatherForecast.Data.Redis.IntegrationTests.csproj", "{6A1A8ABF-8631-460F-BEB1-2FD4C77551EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployToProduction.WeatherForecast.Data.Psql.Setup", "DeployToProduction.WeatherForecast.Data.Psql.Setup\DeployToProduction.WeatherForecast.Data.Psql.Setup.csproj", "{B8C2CEC1-77C0-4C1E-97E7-FCD9463FD710}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeatherForecast", "WeatherForecast", "{198CCFDF-9E72-4F81-9DE9-669EB3DB7B39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ads", "Ads", "{D9974F1E-2491-4056-99B0-05EB8E7DF7D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployToProduction.Ads.WebApi", "DeployToProduction.Ads.WebApi\DeployToProduction.Ads.WebApi.csproj", "{E61CC7A8-71BD-49CF-B553-B04310AB811A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployToProduction.Ads.Core", "DeployToProduction.Ads.Core\DeployToProduction.Ads.Core.csproj", "{9104FFF9-28DA-4635-88B3-FEC674EF275C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,14 +85,30 @@ Global
 		{B8C2CEC1-77C0-4C1E-97E7-FCD9463FD710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C2CEC1-77C0-4C1E-97E7-FCD9463FD710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C2CEC1-77C0-4C1E-97E7-FCD9463FD710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E61CC7A8-71BD-49CF-B553-B04310AB811A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E61CC7A8-71BD-49CF-B553-B04310AB811A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E61CC7A8-71BD-49CF-B553-B04310AB811A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E61CC7A8-71BD-49CF-B553-B04310AB811A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9104FFF9-28DA-4635-88B3-FEC674EF275C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9104FFF9-28DA-4635-88B3-FEC674EF275C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9104FFF9-28DA-4635-88B3-FEC674EF275C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9104FFF9-28DA-4635-88B3-FEC674EF275C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{6C420F89-8AE3-459D-B1A3-2798B59D886D} = {198CCFDF-9E72-4F81-9DE9-669EB3DB7B39}
+		{7BBFA93D-7741-47BA-9CED-1F9AF9B4D617} = {198CCFDF-9E72-4F81-9DE9-669EB3DB7B39}
+		{5B31CE4B-148A-471A-8333-7683F6E015B3} = {198CCFDF-9E72-4F81-9DE9-669EB3DB7B39}
+		{23ABD773-2DA5-4871-93FE-EC7873D39FDE} = {198CCFDF-9E72-4F81-9DE9-669EB3DB7B39}
 		{9776B1C3-3EC8-431D-9E45-B8635D149CCC} = {599E331D-2AAC-4ABF-A1D1-A245F5FB7AEB}
 		{E4CB311B-561F-45FB-BC40-81C11465F698} = {599E331D-2AAC-4ABF-A1D1-A245F5FB7AEB}
+		{3BF21857-FEF2-4B96-A51F-E4CF9842B1A2} = {198CCFDF-9E72-4F81-9DE9-669EB3DB7B39}
 		{6A1A8ABF-8631-460F-BEB1-2FD4C77551EB} = {599E331D-2AAC-4ABF-A1D1-A245F5FB7AEB}
+		{B8C2CEC1-77C0-4C1E-97E7-FCD9463FD710} = {198CCFDF-9E72-4F81-9DE9-669EB3DB7B39}
+		{E61CC7A8-71BD-49CF-B553-B04310AB811A} = {D9974F1E-2491-4056-99B0-05EB8E7DF7D1}
+		{9104FFF9-28DA-4635-88B3-FEC674EF275C} = {D9974F1E-2491-4056-99B0-05EB8E7DF7D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D9C04DF-C25B-4859-AB34-EFB3904119AD}
