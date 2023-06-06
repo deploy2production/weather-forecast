@@ -1,6 +1,19 @@
 version: "3.9"
 
 services:
+  ads:
+    container_name: "weather-forecast-ads"
+    image: "weather-forecast-ads-img"
+    build:
+      context: .
+      dockerfile: Dockerfile.ads
+    networks:
+      - weather-forecast-net
+    ports:
+      - "5298:80"
+    environment:
+       ASPNETCORE_ENVIRONMENT: Development
+       DOTNET_PRINT_TELEMETRY_MESSAGE: false
   app:
     container_name: "weather-forecast-app"
     image: "weather-forecast-app-img"
@@ -16,8 +29,11 @@ services:
        DOTNET_PRINT_TELEMETRY_MESSAGE: false
        ConnectionStrings__Postgres: Host=weather-forecast-postgres;User Id=postgres;Password=postgres;Database=postgres
        ConnectionStrings__Redis: weather-forecast-redis:6379
+       ConnectionStrings__AdsServerUrl: http://weather-forecast-ads
     depends_on:
       postgres:
         condition: service_started
       redis:
+        condition: service_started
+      ads:
         condition: service_started

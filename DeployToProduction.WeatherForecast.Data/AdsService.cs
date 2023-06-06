@@ -28,7 +28,6 @@ namespace DeployToProduction.WeatherForecast.Data
             }
             catch (Exception ex)
             {
-
                 throw new AdsServiceException("Ads error", ex);
             }
 

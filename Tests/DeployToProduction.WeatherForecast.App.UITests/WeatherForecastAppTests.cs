@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using System.Net;
 
 namespace DeployToProduction.WeatherForecast.App.UITests
 {
@@ -34,6 +35,23 @@ namespace DeployToProduction.WeatherForecast.App.UITests
 
             await redisContainer.StartAsync().ConfigureAwait(false);
 
+            var adsContainer = new ContainerBuilder()
+                .WithImage("weather-forecast-ads-img")
+                .WithName("test-weather-forecast-ads")
+                .WithNetwork(network)
+                .WithPortBinding(80, true)
+                .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development")
+                .WithEnvironment("DOTNET_PRINT_TELEMETRY_MESSAGE", "false")
+                .WithWaitStrategy(
+                    Wait.ForUnixContainer()
+                        .UntilHttpRequestIsSucceeded(
+                            request => request.ForPath("/health").ForStatusCode(HttpStatusCode.OK)
+                        )
+                )
+                .Build();
+
+            await adsContainer.StartAsync().ConfigureAwait(false);
+
             var appContainer = new ContainerBuilder()
                 .WithImage("weather-forecast-app-img")
                 .WithName("test-weather-forecast-app")
@@ -42,12 +60,16 @@ namespace DeployToProduction.WeatherForecast.App.UITests
                 .WithEnvironment("ASPNETCORE_ENVIRONMENT", "Development")
                 .WithEnvironment("DOTNET_PRINT_TELEMETRY_MESSAGE", "false")
                 .WithEnvironment(
-                "ConnectionStrings__Postgres",
-                "Host=test-weather-forecast-postgres;Username=postgres;Password=postgres;Database=postgres"
+                    "ConnectionStrings__Postgres",
+                    "Host=test-weather-forecast-postgres;Username=postgres;Password=postgres;Database=postgres"
                 )
                 .WithEnvironment(
-                "ConnectionStrings__Redis",
-                "test-weather-forecast-redis:6379"
+                    "ConnectionStrings__Redis",
+                    "test-weather-forecast-redis:6379"
+                )
+                .WithEnvironment(
+                    "ConnectionStrings__AdsServerUrl",
+                    "http://test-weather-forecast-ads"
                 )
                 .Build();
 
@@ -64,12 +86,18 @@ namespace DeployToProduction.WeatherForecast.App.UITests
                 var forecastBlock = driver.FindElement(By.Id("forecast_block"));
 
                 Assert.IsNotNull(forecastBlock);
+
+                var adsBlock = driver.FindElement(By.Id("ads_block"));
+
+                Assert.IsNotNull(adsBlock);
             }
             finally
             {
                 driver.Quit();
                 driver.Dispose();
+
                 await appContainer.DisposeAsync().ConfigureAwait(false);
+                await adsContainer.DisposeAsync().ConfigureAwait(false);
                 await pgsqlContainer.DisposeAsync().ConfigureAwait(false);
                 await redisContainer.DisposeAsync().ConfigureAwait(false);
                 await network.DeleteAsync().ConfigureAwait(false);
